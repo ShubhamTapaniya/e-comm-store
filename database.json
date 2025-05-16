@@ -1,38 +1,6 @@
 {
-  "userdata": [
-    {
-      "name": "Shubham34567",
-      "email": "asdfg",
-      "password": "123456",
-      "id": 4
-    },
-    {
-      "name": "jash",
-      "email": "jash123",
-      "password": "12345",
-      "id": 5
-    },
-    {
-      "name": "darshan",
-      "email": "darshan123",
-      "password": "asdfghjkl",
-      "id": 6
-    },
-    {
-      "name": "shubham",
-      "email": "1",
-      "password": "1",
-      "id": 7
-    }
-  ],
-  "admindata": [
-    {
-      "name": "gautam",
-      "email": "2",
-      "password": "2",
-      "id": 3
-    }
-  ],
+  "userdata": [],
+  "admindata": [],
   "products": [
     {
       "id": 2,
@@ -334,103 +302,7 @@
       }
     }
   ],
-  "categories": [
-    {
-      "category": "Smart Phones",
-      "image": "http://localhost:4200/assets/categories1.png"
-    },
-    {
-      "category": "watches",
-      "image": "http://localhost:4200/assets/categories2.png"
-    },
-    {
-      "category": "Electronics",
-      "image": "http://localhost:4200/assets/categories3.png"
-    },
-    {
-      "category": "Furnitures",
-      "image": "http://localhost:4200/assets/categories4.png"
-    },
-    {
-      "category": "collections",
-      "image": "http://localhost:4200/assets/categories5.png"
-    },
-    {
-      "category": "fashion",
-      "image": "http://localhost:4200/assets/categories6.png"
-    }
-  ],
+  "categories": [],
   "cart": [],
-  "orders": [
-    {
-      "name": "Juan Francisco García Flores",
-      "email": "ejemplo@ejemplo.mx",
-      "phone": "5553428400",
-      "orderid": 206,
-      "payment_mode": "cash",
-      "final_checkout_price": 1611.2160000000001,
-      "orderdate": "2025-05-11",
-      "cart": [
-        {
-          "product_title": "Women's Chain Bracelet",
-          "product_quantity": 3,
-          "product_image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg"
-        },
-        {
-          "product_title": "Mens Casual Slim Fit",
-          "product_quantity": 20,
-          "product_image": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg"
-        }
-      ],
-      "order_status": "Shipped",
-      "delivery_date": "2025-05-14",
-      "userid": "7",
-      "id": 1
-    },
-    {
-      "name": "jay shah",
-      "email": "ejemplo@ejemplo.mx",
-      "phone": "5553428400",
-      "orderid": 207,
-      "payment_mode": "cash",
-      "final_checkout_price": 931.3,
-      "orderdate": "2025-05-11",
-      "cart": [
-        {
-          "product_title": "Women's Chain Bracelet",
-          "product_quantity": 2,
-          "product_image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg"
-        }
-      ],
-      "order_status": "Packed",
-      "delivery_date": "2025-05-17",
-      "userid": "7",
-      "id": 2
-    },
-    {
-      "name": "Juan Francisco García Flores",
-      "email": "ejemplo@ejemplo.mx",
-      "phone": "5553428400",
-      "orderid": 227,
-      "payment_mode": "cash",
-      "final_checkout_price": 952.7266,
-      "orderdate": "2025-05-12",
-      "cart": [
-        {
-          "product_title": "Women's Chain Bracelet",
-          "product_quantity": 2,
-          "product_image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg"
-        },
-        {
-          "product_title": "Mens Casual Slim Fit",
-          "product_quantity": 2,
-          "product_image": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg"
-        }
-      ],
-      "order_status": "Delivered",
-      "delivery_date": "2025-05-14",
-      "userid": "7",
-      "id": 3
-    }
-  ]
+  "orders": []
 }
