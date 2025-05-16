@@ -1,0 +1,105 @@
+<h1 style="text-align: center; margin: 1.5rem;">All Categories</h1>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+    @if(categories.length === 0){
+        <app-scelly></app-scelly>
+    }@else{
+        @for(one of categories;track one){
+            <div class="card" style="background-color: #F7F7F7; margin: 1rem; padding: 1rem; box-shadow: 0 4px 16px rgba(0,0,0,0.2); border-radius: 1rem;">
+                <img src="{{one.image}}" alt="no image" height="150px" width="150px">
+                <p style="text-align: center;">{{one.category}}</p>
+            </div>
+        }
+    }
+</div>
+<h1 style="text-align: center; margin: 1.5rem;">Featured Products</h1>
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <div style="display: flex;width: 100%;">
+        <div style="min-width: 20%; padding:2rem;display: flex; flex-direction: column;box-shadow: 0 4px 16px rgba(0,0,0,0.2); border-radius: 1rem; padding: 2rem;margin: 2rem 4rem 2rem 4rem; max-height: 30rem;">
+            <h2 style="text-align: center;">Filter Products</h2>
+            <div style="margin: 2rem 0;">
+                <label for="filter" style="font-weight: 500;">Select Category:</label>
+                <select [(ngModel)]="filter" name="filter" id="filter" style="padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;" (change)="change()">
+                    <option value="All" selected>All</option>
+                    <option value="men">Men</option>
+                    <option value="women">Women</option>
+                    <option value="kids">Kids</option>
+                    <option value="jewelery">Jewelery</option>
+                    <option value="electronics">Electronics</option>
+                </select>
+            </div>
+            <br>
+            <hr>
+            <br>
+            <div>
+                <label>Price Range:</label>
+                <ngx-slider min="minprice" max="maxprice" [(value)]="selectedMin" [(highValue)]="selectedMax" [options]="sliderOptions" class="ngx-slider"></ngx-slider>
+                <div style="display: flex; justify-content: space-between;width: 90%;; margin-top: 1rem;">
+                    <span>Min: {{ selectedMin }} $</span>
+                    <span>Max: {{ selectedMax }} $</span>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <br>
+            <div style="display: flex; flex-direction: column; padding: 10px; gap: 8px;">
+                <p>Sort by Rating:</p>
+                <label style="display: flex; align-items: center; gap: 6px;">
+                    <input type="checkbox" id="rating4" value="4.5" (input)="change_checkbox($event)">
+                    4.5+ stars
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px;">
+                    <input type="checkbox" id="rating3" value="3.5" (input)="change_checkbox($event)">
+                    3.5+ stars
+                </label>
+            </div>
+            <div style="display: flex;justify-content: space-around;">
+                <button (click)="applyPriceFilter()" style="padding: 0.4rem 1rem;" >Apply</button>
+                <button (click)="reset_filter()" style="padding: 0.4rem 1rem;" >Reset Filter</button>
+            </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;width: 75%;">
+            @if(products.length === 0){
+                <app-scelly></app-scelly>
+            }@else{
+                @for(product of products.slice(0,loadingindex); track product.id){
+                    @if(product.stock >= 1 ){
+                        <div style="height:23rem; width: 14rem; border-radius: 1rem; padding: 1rem; margin: 2.5rem;box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+                            <div style="display: flex; justify-content: center; text-align: center;">
+                                <img src="{{product.image}}" alt=" no img" height="200px" width="200px">
+                            </div>
+                            <div style="display: flex; flex-direction: column; justify-content: center; text-align: center; position: relative;">
+                                <h3 style="height: 3rem; overflow: hidden;">{{product.title}}</h3>
+                                <h4 style="margin: 0.3rem;">{{product.price}} $</h4>
+                                <p>⭐ {{product.rating.rate}}({{product.rating.count}} review)</p>
+                                <p>Stock : {{product.stock}}</p>
+                                <button style="position: absolute; top: 7.5rem; right: 0.7rem; width: 12rem;" (click)="addtocart(product)">Add to Cart</button>
+                            </div>
+                        </div>
+                    }@else{
+                        <div style="height:23rem; width: 14rem; border-radius: 1rem; padding: 1rem; margin: 2.5rem;box-shadow: 0 4px 16px rgba(0,0,0,0.2);" class="out_of_stock">
+                            <div style="display: flex; justify-content: center; text-align: center;">
+                                <img src="{{product.image}}" alt=" no img" height="200px" width="200px">
+                            </div>
+                            <div style="display: flex; flex-direction: column; justify-content: center; text-align: center; position: relative;">
+                                <h3 style="height: 3rem; overflow: hidden;">{{product.title}}</h3>
+                                <h4 style="margin: 0.3rem;">{{product.price}} $</h4>
+                                <p>⭐ {{product.rating.rate}}({{product.rating.count}} review)</p>
+                                <p>Stock : {{product.stock}}</p>
+                                <button style="position: absolute; top: 7.5rem; right: 0.7rem; width: 12rem;" disabled>Out of stock</button>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+    <button #loadmore_btn (click)="loadmore()" [disabled]="loadingindex > products.length" style="margin-bottom: 2rem;">load more</button>
+</div>
+<div style="background-image: url('assets/single-campaign.png'); background-attachment: fixed;">
+    <div style="padding: 15rem 2rem 15rem 2rem;color: white; text-align: center;">
+        <h1 style="font-size: 2rem;">Welcome Summer 2025 with exiting offeres</h1>
+        <h1 style="font-size: 4rem;">upto 40% off</h1>
+        <button id="shop_now">Shop now</button>
+    </div>        
+</div>
+<app-toaster></app-toaster>

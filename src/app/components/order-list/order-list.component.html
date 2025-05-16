@@ -1,0 +1,65 @@
+@if(order_list.length !== 0){
+  <div>
+  <h1 style="margin: 3rem 0 0 7rem; color: black;">Your Orders</h1>
+  <div style="margin: 3rem 7rem ;">
+    <!-- Table Header -->
+    <div style="display: grid; grid-template-columns: 1fr 1.2fr 1fr 1.2fr 1fr 1fr 1.5fr; padding: 1rem; background-color: #f0f0f0; border-radius: 10px; font-weight: bold;" class="container">
+      <p>Order ID</p>
+      <p>Order Date</p>
+      <p>Status</p>
+      <p>Delivery Date</p>
+      <p>Items</p>
+      <p>Price</p>
+      <p>Action</p>
+    </div>
+
+    <!-- Order Rows -->
+    <div *ngFor="let order of order_list; index as i" style="margin: 1rem 0 0 0;">
+      <div style="display: grid; grid-template-columns: 1fr 1.2fr 1fr 1.2fr 1fr 1fr 1.5fr; padding: 1rem; box-shadow: 0 4px 16px rgba(0,0,0,0.1); border-radius: 10px; align-items: center;" class="holder">
+          <span>#{{ order.orderid }}</span>
+          <span>{{ order.orderdate }}</span>
+          <span>
+            @if (order.order_status) {
+              @if (order.order_status === 'Pending') {
+                <span style="color: orange;">Pending</span> <!-- action needed -->
+              } @else if (order.order_status === 'Packed') {
+                <span style="color: #673ab7;">Packed</span> <!-- process started -->
+              } @else if (order.order_status === 'Shipped') {
+                <span style="color: #03a9f4;">Shipped</span> <!-- in transit -->
+              } @else if (order.order_status === 'Delivered') {
+                <span style="color: #4caf50;">Delivered</span> <!-- success -->
+              } @else if (order.order_status === 'Cancelled') {
+                <span style="color: gray;">Cancelled</span> <!-- error/danger -->
+              } @else {
+                <span style="color: gray;">{{ order.order_status }}</span>
+              }
+            } @else {
+              <span style="color: red;">Pending</span>
+            }
+          </span>
+          @if( order.delivery_date ){
+            @if(order.order_status === 'Cancelled'){
+              <span style="color: gray;">Cancelled</span>
+            }@else{
+              <span>{{order.delivery_date}}</span>
+            }
+
+          }@else {
+              <span style="color: red;">Pending</span>
+          }
+          <span>{{ total_items[i] }}</span>
+          <span>{{ order.final_checkout_price | number: '1.2-2' }} $</span>
+          <div style="display: flex;justify-content: space-evenly;">
+            <button style="padding: 0.4rem 0.8rem; background: #5c6bc0; color: white; border: none; border-radius: 5px;" (click)="track_order(order.id)">Track</button>
+            <button style="padding: 0.4rem 0.8rem; background: #5c6bc0; border: 1px solid #ccc; border-radius: 5px;" (click)="re_order(order.id)">Re-Order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}@else{
+  <div style="display: flex; justify-content: center; margin-top: 2rem;">
+    <img src="assets/nodatafound.jpg" alt="no orders" height="400px" width="400px">
+  </div>
+  <h1 style="text-align: center; color: #5c6bc0; margin-bottom: 2rem;">Looks like You have not Ordered yet</h1>
+}

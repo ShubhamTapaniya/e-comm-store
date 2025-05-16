@@ -1,0 +1,152 @@
+.track-order-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.cancelled {
+  background-color: #fff0f0;
+  border-color: #f44336;
+}
+.delivered {
+  background-color: #f0fff4;
+  border-color: #4caf50;
+}
+.shipped {
+  background-color: #f0f9ff;
+  border-color: #2196f3;
+}
+.packed{
+  background-color: #f4eeff;
+  border-color: #673ab7;
+}
+.status-label {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.delivery-info {
+  margin-top: 1rem;
+}
+.delivery-info.cancelled {
+  color: #f44336;
+}
+.cancelled-text {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.delivered {
+  color: #4caf50;
+}
+.on-the-way {
+  color: #2196f3;
+}
+
+.tracking-progress {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+.circle {
+  width: 20px;
+  height: 20px;
+  background-color: #bbb;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+}
+.step.completed .circle {
+  background-color: #4caf50;
+}
+.step p {
+  margin: 0;
+}
+.track-btn {
+  margin-top: 1rem;
+  background: #2196f3;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.buy-again,
+.review {
+  background: #4caf50;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.review {
+  background: #ff9800;
+}
+.order-progress-container {
+  position: relative;
+  margin: 2rem 1rem;
+}
+
+.progress-line {
+  position: relative;
+  height: 0.7rem;
+  top: -0.6rem;
+  background-color: #ddd;
+  margin: 0.5rem 0 1.5rem 0;
+}
+
+.progress-fill {
+  position: absolute;
+  height: 100%;
+  background-color: #4caf50;
+  left: 0;
+  transition: width 0.4s ease;
+  z-index: 1;
+  border-radius: 1rem;
+}
+
+.step-marker {
+  position: absolute;
+  top: -12px;
+  width: 25%;
+  text-align: center;
+}
+
+.step-marker:nth-child(2) { left: 0%; }
+.step-marker:nth-child(3) { left: 25%; }
+.step-marker:nth-child(4) { left: 50%; }
+.step-marker:nth-child(5) { left: 75%; }
+
+.step-marker .circle {
+  width: 1rem;
+  height: 1rem;
+  background-color: #bbb;
+  border-radius: 50%;
+  margin: 0.6rem auto 0 auto;
+  z-index: 2;
+  position: relative;
+}
+.active .circle {
+  background-color: #4caf50;
+}
+.step-marker span {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.9rem;
+}

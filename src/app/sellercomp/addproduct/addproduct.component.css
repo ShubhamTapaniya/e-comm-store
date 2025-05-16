@@ -1,0 +1,19 @@
+input{
+    padding: 0.5em;
+    width: 20rem;
+}
+textarea{
+    padding: 0.5em;
+    width: 20rem;
+}
+button:disabled{
+    cursor: not-allowed;
+}
+.form-group{
+    display: flex;
+   justify-content: space-between;
+    width: 30rem;
+}
+.form-group label{
+    margin:0 1rem 0 0;
+}

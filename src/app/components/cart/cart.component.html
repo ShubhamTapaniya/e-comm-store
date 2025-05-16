@@ -1,0 +1,88 @@
+<div>
+    @if(product_cart.length !== 0){
+        <h1 style="margin: 3rem 0 0 7rem ;">Shoping Cart</h1>
+        <div style="display: flex; flex-direction: row;">
+            <div style="margin: 3rem 3rem 5rem 5rem; width: 60%;">
+                <div style="display: flex;justify-content: space-between; margin-left: 2rem;">
+                    <p>Product</p>
+                    <div style="display: flex; width: 52%; justify-content: space-evenly;">
+                        <p>Price</p>
+                        <p>Quantity</p>
+                        <p>Subtotal</p>
+                        <p>Remove</p>
+                    </div>
+                </div>
+                <div>
+                    @for(product of product_cart;track product.id){
+                        <div style="box-shadow: 0 4px 16px rgba(0,0,0,0.2); align-items: center; margin: 1rem; padding: 1rem;border-radius: 1rem;">
+                            <div style="display: flex ;justify-content: space-between;">
+                                <div style="display: flex; justify-content: center; text-align: center; align-items: center;">
+                                    <img src="{{product.image}}" alt=" no img" height="75px" width="75px">
+                                    <div style="max-width: 15rem;"><h3>{{product.title}}</h3></div>
+                                </div>
+                                <div style="display: flex; width: 50%; justify-content: space-evenly; align-items: center;">
+                                    <h4>{{product.price}} $</h4>
+                                    <div style="display: flex;border: 1px solid #5c6bc0;">
+                                        <button class="cart_small_btns" (click)="minusbtn(product,product.quantity)" >-</button>
+                                        <p style="margin:0 0.5rem 0 0.5rem;">{{product.quantity}}</p>
+                                        <button class="cart_small_btns" (click)="addbtn(product,product.quantity)" >+</button>
+                                    </div>
+                                    <h4>{{ product.subtotal | number:'1.2-2' }} $</h4>
+                                    <button class="cart_small_btns" (click)="remove_cart(product.id)"><i class='bx bxs-trash' ></i></button>
+                                </div>
+                            </div>
+                            @if(bool_arr[$index] === false){
+                                <div style="color: red;">
+                                  <p>* only {{product.stock}} stock left</p>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+            <div style="margin: 3rem 3rem 3rem 0; width: 20rem; height: 20rem; box-shadow:0 4px 16px rgba(0,0,0,0.2); padding: 2rem;border-radius: 1rem; display: flex;flex-direction: column;justify-content: space-between;">
+                <h3>Cart Total</h3>
+                <div style="display: flex;justify-content: space-between;">
+                    <p>Total Items :</p>
+                    <p>{{final_cart_object.total_items}}</p>
+                </div>
+                <hr>
+                <div>
+                    <h4>Shipping :</h4>
+                    <br>
+                    @if(final_cart_object.address !== ''){
+                        <p style="max-width: 100%;">Shipping to <b style="word-break: break-word;">{{final_cart_object.address}}</b></p>
+                        <a (click)="change_address()" style="color: #5c6bc0; text-decoration: underline; cursor: pointer;">Change address</a>
+                    }
+                    @else{
+                        <a (click)="change_address()" style="color: #5c6bc0; text-decoration: underline; cursor: pointer;">Add address</a>
+                    }
+                </div>
+                <hr>
+                <label >
+                    <input type="checkbox" name="" id="" (click)="showdiscount()">Apply Discount({{final_cart_object.discount*100}} %)
+                </label>
+
+                <div style="display: flex;justify-content: space-between;">
+                    <p>Total Price :</p>
+                    @if(show_discount()){
+                        <p><s>{{final_cart_object.total_price | number:'1.2-2'}} $</s></p>
+                        <p><b>{{the_final_price | number:'1.2-2'}} $</b></p>
+                    }@else{
+                        <p><b>{{the_final_price | number:'1.2-2'}} $</b></p>
+                    }
+                </div>
+                <button (click)="to_navigate()" style="width: 100%; padding: 1rem;" [disabled]="!is_address_changed()" class="checkout_btn">Proceed to Checkout</button>
+            </div>
+        </div>
+    }
+    <div style="display: flex; justify-content: center;">
+        @if(product_cart.length === 0){
+            <div style="height: 30rem; width: 30rem; margin: 2rem;">
+                <img src="assets/empty_cart.png" alt="no img" height="100%" width="100%">
+            </div>
+        }
+    </div>
+</div>
+<app-toaster></app-toaster>
+

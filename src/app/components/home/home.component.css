@@ -1,0 +1,25 @@
+#shop_now{
+    padding: 1.5rem 4rem 1.5rem 4rem;
+    border-radius: 1rem;
+    background-color: white;
+    color: black;
+}
+
+#shop_now:hover{
+    transition: all 0.5s ease-in-out;
+    background-color: #5c6bc0;
+    color: white;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(20px); }
+    10% { opacity: 1; transform: translateY(0); }
+    90% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(20px); }
+}
+button:disabled{
+    cursor: not-allowed;
+}
+.out_of_stock{
+    opacity: 0.5;
+}

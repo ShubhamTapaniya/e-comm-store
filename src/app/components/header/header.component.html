@@ -1,0 +1,31 @@
+<div class="container" >
+    <div>
+        <h1>E-comm</h1>
+    </div>
+    <div class="search_input">
+        <input  #search type="text" name="search" placeholder="search for products" style="flex: 1;height: 2rem" (input)="input_search_suggetion(search.value)" (input)="load_search_component(search.value)">
+        <button (click)="clearSearch()" *ngIf="isfilled()" ><i class='bx bx-x' style="font-size: 2rem;"></i></button>
+        <button (click)="load_search_component(search.value)" disabled="!isfilled()" class="search_button"><i class='bx bx-search'></i></button>
+    </div>
+    <div style="display: flex;">
+        <!-- Cart Icon with Badge -->
+        <div style="margin: 1rem; cursor: pointer; position: relative;" routerLink="/cart">
+            <i class='bx bxs-cart-alt' style="font-size: 2rem;"></i>
+            <span *ngIf="total_products() > 0"
+                style="position: absolute; top: -5px; right: -5px; background-color: red; color: white; border-radius: 50%; padding: 5px 10px; font-size: 0.75rem;">{{total_products()}}</span>
+        </div>
+        <a routerLink="/login" *ngIf="!isuserloggedin()" (click)="usershowdivchange()">Login | Register</a>
+        <a *ngIf="isuserloggedin()" (click)="logout()" style="cursor: pointer;">Logout</a>
+        <a *ngIf="isuserloggedin()">welcome,{{name()}}</a>
+        <a routerLink="/seller-login" *ngIf="!isuserloggedin()" (click)="adminshowdivchange()">Admin</a>
+    </div>
+</div>
+<div class="container" style="padding-bottom: 1rem;">
+    <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" >Home</a>
+    <a routerLink="/shop" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  >Shop</a>
+    <a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  >Contact</a>
+    <a routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" >About</a>
+    <a routerLink="/orders" *ngIf="isuserloggedin()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Orders</a>
+</div>
+<hr class="shadow-line">
+

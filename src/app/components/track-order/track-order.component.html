@@ -1,0 +1,119 @@
+<!-- <div class="track-order-container">
+  <div class="header">
+    <h2>{{order.order_status}}</h2>
+    <p><strong>{{total_products}} product</strong> in this order</p>
+    <div class="delivery-info">
+      <strong class="on-the-way">It's on the Way!</strong>
+      <p>Delivery Estimate: <strong>{{order.delivery_date}}</strong></p>
+    </div>
+  </div>
+  <div class="tracking-progress">
+    <div class="step completed">
+      <div class="circle"></div>
+      <p>Order Placed</p>
+      <small>{{order.orderdate}}</small>
+    </div>
+    <div class="step completed">
+      <div class="circle"></div>
+      <p>Packed</p>
+      <small>{{order.orderdate}}</small>
+    </div>
+    <div class="step completed">
+      <div class="circle"></div>
+      <p>Shipped</p>
+      <small>Oct 19</small>
+    </div>
+    <div class="step">
+      <div class="circle"></div>
+      <p>Out for Delivery</p>
+    </div>
+    <div class="step">
+      <div class="circle"></div>
+      <p>Est Delivery</p>
+      <small>{{order.delivery_date}}</small>
+    </div>
+    <button class="track-btn">Track Package</button>
+  </div>
+  <div style="display: flex; align-items: center; margin-top: 1rem; gap: 1rem">
+    <img src="" alt="img" width="75" height="75" style="border-radius: 0.5rem"/>
+    <div style="flex: 1">
+      <h4>{{ order.title }}</h4>
+      <p>Quantity: {{ order.quantity }}</p>
+      <p>Price: {{ order.price }} $</p>
+    </div>
+  </div>
+  <div class="actions">
+    <button class="buy-again">Buy Again</button>
+    <button class="review">Write a Review</button>
+  </div>
+</div> -->
+<div class="track-order-container" [ngClass]="order.order_status ? order.order_status.toLowerCase() : ''"><!-- to prevent undefined by order.order_status beacuse seller yet to take action -->
+  <div class="header">
+    <h2 class="status-label">{{ order.order_status || 'Pending' }}</h2>
+    <p><strong>{{ total_products }} product</strong> in this order</p>
+    @if(!order.order_status){
+      <div>
+        <strong style="color: red;">Wating for Seller to take Action!</strong>
+      </div>
+    }@else{
+      <div class="delivery-info" *ngIf="order.order_status !== 'Cancelled'">
+        <strong class="on-the-way" *ngIf="order.order_status !== 'Delivered'">It's on the Way!</strong>
+        <strong class="delivered" *ngIf="order.order_status === 'Delivered'">Delivered Successfully</strong>
+        <p style="line-height: 2rem;">Delivery date: <strong>{{ order.delivery_date }}</strong></p>
+        <p>Payment Mode : {{order.payment_mode}}</p>
+      </div>
+    }
+    <div class="delivery-info cancelled" *ngIf="order.order_status === 'Cancelled'">
+      <strong class="cancelled-text">Order Cancelled</strong>
+      <p>Please contact support for more info.</p>
+    </div>
+  </div>
+
+  <div class="order-progress-container">
+    <div class="progress-line">
+      @if(order.order_status){
+        @if(order.order_status !== 'Cancelled'){
+          <div class="progress-fill" [style.width.%]="getProgressPercent(order.order_status)"></div>
+        }
+        @else{
+          <div class="progress-fill" [style.width.%]="13"></div>
+        }
+      }
+      @else{
+        <div class="progress-fill" [style.width.%]="13"></div>
+      }
+      <div class="step-marker" [ngClass]="{'active': true}">
+        <div class="circle"></div>
+        <span>Placed({{order.orderdate}})</span>
+      </div>
+      <div class="step-marker" [ngClass]="{'active': order.order_status === 'Packed' || order.order_status === 'Shipped' || order.order_status === 'Delivered'}">
+        <div class="circle"></div>
+        <span>Packed</span>
+      </div>
+      <div class="step-marker" [ngClass]="{'active': order.order_status === 'Shipped' || order.order_status === 'Delivered'}">
+        <div class="circle"></div>
+        <span>Shipped</span>
+      </div>
+      <div class="step-marker" [ngClass]="{'active': order.order_status === 'Delivered'}">
+        <div class="circle"></div>
+        <span>Delivered</span>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 1rem; gap: 1rem">
+    <h4>Items Ordered</h4>
+    @for(item of order.cart;track $index){
+      <div style="display: flex; margin: 1rem;">
+        <img src="{{item.product_image}}" alt="" height="50px" width="50px">
+        <div>
+          <h4>{{ item.product_title }}</h4>
+          <p>Quantity: {{item.product_quantity }}</p>
+        </div>
+      </div>
+    }
+    <div style="display: flex; justify-content: flex-end;">
+      <h3>Total Price : {{order.final_checkout_price | number:'1.2-2' }} $</h3>
+    </div>
+  </div>
+  <button style="display: flex; padding: 0.5rem 1rem 0.5rem 0.5rem;" (click)="back()"><i class='bx bxs-chevron-left' style="font-size: 1.3rem;"></i><span style="margin-top: 0.1rem;">back</span></button>
+</div>

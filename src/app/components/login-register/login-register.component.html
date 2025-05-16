@@ -1,0 +1,60 @@
+<div class="modal-backdrop " *ngIf="usershowdiv()">
+  <button (click)="loginhidefunc()" style="position: absolute; top: 1rem; right: 1rem; background-color: transparent; border: none;color: white; font-size: 1.5rem; cursor: pointer;" ><i class='bx bx-x'></i></button>
+  <div class="modal-box">
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <div class="container" #container id="container">
+        <div class="form-container sign-in">
+          <form>
+            <h1>User Sign In</h1>
+            <div class="social-icons">
+              <a class="icon"><i class='bx bxl-google' ></i></a>
+              <a class="icon"><i class='bx bxl-facebook'></i></a>
+              <a class="icon"><i class='bx bxl-github' ></i></a>
+              <a class="icon"><i class='bx bxl-linkedin-square' ></i></a>
+            </div>
+            <span>or use your email password</span>
+            <input type="email" placeholder="Email" name="username" [(ngModel)]="userobj.email" />
+            <div style="width: 100%; position: relative;">
+              <input [type]="pass_show ? 'text' : 'password'" placeholder="Password" name="password" [(ngModel)]="userobj.password"/>
+              <button (click)="password_hide_show_toggle()" style=" padding: 0; background-color: transparent; color: black; font-size: 1.5rem; position: absolute; margin: 0; top: 0.7rem; left: 17rem;"><i [class]="pass_show ? 'bx bxs-show' : 'bx bxs-hide'"></i></button>
+            </div>
+            <a href="#">Forget Password?</a>
+            <button (click)="signin(userobj.email,userobj.password)">Sign In</button>
+          </form>
+        </div>
+        <div class="form-container sign-up">
+          <form>
+            <h1>Create User Account</h1>
+            <div class="social-icons">
+              <a class="icon"><i class='bx bxl-google' ></i></a>
+              <a class="icon"><i class='bx bxl-facebook'></i></a>
+              <a class="icon"><i class='bx bxl-github' ></i></a>
+              <a class="icon"><i class='bx bxl-linkedin-square' ></i></a>
+            </div>
+            <span>or use your email for registeration</span>
+            <input type="text" [(ngModel)]="userobj.name" placeholder="Name" name="name" />
+            <input type="email" [(ngModel)]="userobj.email" placeholder="Email" name="email" />
+            <div style="display: flex; width: 100%; position: relative;">
+              <input [type]=" pass_show ? 'text' : 'password'" [(ngModel)]="userobj.password" placeholder="Password" name="password"/>
+              <button (click)="password_hide_show_toggle()" style="padding: 0; background-color: transparent; color: black; font-size: 1.5rem; position: absolute; margin: 0; top: 0.7rem; left: 17rem;"><i [class]= "pass_show ? 'bx bxs-show' : 'bx bxs-hide'"></i></button>
+            </div>
+            <button (click)="signup(userobj)" >Sign Up</button>
+          </form>
+        </div>
+        <div class="toggle-container">
+          <div class="toggle">
+            <div class="toggle-panel toggle-left">
+              <h3>Already have account?</h3>
+              <button class="hidden" #login id="login">Go to Sign In</button>
+            </div>
+            <div class="toggle-panel toggle-right">
+              <h3>Don't have account? create one</h3>
+              <button class="hidden" #register id="register">Sign Up</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div>
+  </div>
+</div>

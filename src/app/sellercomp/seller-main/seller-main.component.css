@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    list-style: none;
+    font-weight: 500;
+    background-color: #fee46f;
+    color: black;
+}
+button{
+    cursor: pointer;
+    background-color: #fee46f;
+    color: black;
+}
+.search_input {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    max-width: 50%;
+    border: 1px solid #ccc;/* to make line of div that contains input and buttons */
+    margin:1rem;
+    padding-left: 0.2rem;
+}
+
+.search_input input {
+    flex: 1;
+    height: 2.5rem;
+    border: none;/* to hide original input line */
+    padding: 0 0.5rem;
+    outline: none;/* to hide active input box line */
+}
+i{
+    font-size: 1.5rem;
+}
+.search_button {
+    background-color: transparent;
+    border: none;
+    height: 2.5rem;
+    width: 2.3rem;
+    color: white;
+}
+.container a{
+    margin:1rem;
+    text-decoration: none;
+    color: black;
+}
+.shadow-line {
+    border: none;
+    height: 1px;
+    background: #ccc;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.9);
+}
+.active {
+    position: relative;
+  } 
+.active::after {
+    content: "";
+    position: absolute;
+    bottom: -2px; /* slight space below text */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background-color: black;
+    transition: all 1s ease;
+    
+}
+.container button{
+    background-color: inherit;
+    border: none;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    margin:1rem;
+    color: white;
+}
+.display_none{
+    display: none;
+}
+*{
+    color: white;
+    text-decoration: none;
+}
+.black{
+    background-color: #fee46f;
+    display: flex;
+    justify-content:space-between;
+    /* padding: 5rem 25rem 5rem 5rem; */
+     padding: 5rem 5rem 5rem 5rem;
+}
+.black i{
+    font-size: 1.5rem;
+    margin: 0.5rem;
+}
+.black i:hover{
+    color: 	#fee46f;
+    cursor: pointer;
+}

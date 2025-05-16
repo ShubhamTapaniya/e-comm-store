@@ -1,0 +1,27 @@
+<div style="margin: 2rem 9rem ;">
+    <h1 >Thank you {{checkout_data.name}} for placing order</h1>
+    <br>
+    <p>Your order hase been placed successfully! You will recive E-mail on <b>{{checkout_data.email}}</b></p>
+    <br>
+    <div style="background-color: rgb(242, 242, 242); min-height: 18rem; border-radius: 1rem; padding: 2rem; line-height: 2rem;">
+        <h2>Order Summary</h2>
+        <p >Order Number:{{cartservice.getOrderId()}}</p>
+        <div>
+            <h3>Shipping Info</h3>
+            <p>{{checkout_data.address}}</p>
+        </div>
+        <h3>Payment Mode</h3>
+        <p>{{checkout_data.paymentmode}}</p>
+        <div>
+            <h3>Items Orderd</h3>
+            @for(product of products;track $index){
+                <div style="display: flex; justify-content: space-between;margin: 0 1rem 0 0;"><p>{{product.title}} x {{product.quantity}}</p><p>{{product.subtotal}}$</p></div>
+            }
+        </div>
+        <hr>
+        <div style="display: flex; justify-content: space-between;margin: 0 1rem 0 0;"><h3>Total Price :</h3><h3>{{total_subtotal}} $</h3></div>
+        <div style="display: flex; justify-content: space-between;margin: 0 1rem 0 0;"><h3>Discounted price:</h3><h3>{{cartservice.the_final_price  | number:'1.2-2'}} $</h3></div>
+        <button (click)="to_navigate()">go to home</button>
+    </div>
+</div>
+

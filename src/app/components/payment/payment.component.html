@@ -1,0 +1,53 @@
+<!-- <div style="margin: 2rem; display: flex; justify-content: center; align-items: center;">
+  <div class="payment-card">
+    <h2>💳 Pay with Debit Card</h2>
+    <form class="payment-form">
+      <div class="form-group">
+        <label for="cardHolder">Cardholder Name</label>
+        <input type="text" id="cardHolder" placeholder="John Doe" required />
+      </div>
+      <div class="form-group">
+        <label for="cardNumber">Card Number</label>
+        <input type="text" id="cardNumber" maxlength="19" placeholder="1234 5678 9012 3456" oninput="this.value = this.value.replace(/[^\d\s]/g, '').slice(0, 16)" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="expiryMonth">Expiry Month</label>
+          <input type="text" id="expiryMonth" placeholder="MM" maxlength="2" required oninput="this.value = this.value.replace(/[^\d\s]/g, '').slice(0, 2)" />
+        </div>
+        <div class="form-group">
+          <label for="expiryYear">Expiry Year</label>
+          <input type="text" id="expiryYear" placeholder="YYYY" maxlength="4" required oninput="this.value = this.value.replace(/[^\d\s]/g, '').slice(0, 4)"/>
+        </div>
+        <div class="form-group">
+          <label for="cvv">CVV</label>
+          <input type="password" id="cvv" placeholder="123" maxlength="3" required oninput="this.value = this.value.replace(/[^\d\s]/g, '').slice(0, 3)"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="billingAddress">Billing Address</label>
+        <input type="text" id="billingAddress" placeholder="123 Main St" required />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" placeholder="New York" required />
+        </div>
+        <div class="form-group">
+          <label for="zip">ZIP</label>
+          <input type="text" id="zip" placeholder="10001" required oninput="this.value = this.value.replace(/[^\d\s]/g, '').slice(0, 5)"/>
+        </div>
+      </div>
+      <button style="width: 100%;padding: 1rem;" (click)="redirectToCheckout()">Place Order</button>
+    </form>
+  </div>
+</div> -->
+<div style="display: flex; align-items: center;flex-direction: column; margin: 2rem; line-height: 2rem;">
+  <div><h2>Total Amount to Pay : {{final_price}} $</h2></div>
+  <div style="display: flex;justify-content: center;align-items: center;">
+    <div #paymentref style="width: 500px; margin: 1rem;"></div>
+  </div>
+  <div><button style="padding: 0.5rem 1rem;margin: 1rem;" (click)="to_checkout()">Cencel</button></div>
+  <div><h2>Please Do not Refresh page while transaction is processing</h2></div>
+</div>
+<app-toaster></app-toaster>

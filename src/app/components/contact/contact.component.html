@@ -1,0 +1,58 @@
+<div style="display: flex; flex-wrap: wrap; gap: 2rem; padding: 2rem; max-width: 1200px; margin: auto;">
+  <!-- Contact Info Section -->
+  <div style="flex: 1; min-width: 280px; background: #fff; border-radius: 1rem; padding: 2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
+    <div style="margin-bottom: 2rem;">
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <div style="background-color: #5c6bc0; color: white; border-radius: 50%; padding: 0.75rem;">
+          <i class='bx bx-phone-call' style="font-size: 2rem;"></i>
+        </div>
+        <div>
+          <h3 style="margin: 0;">Call To Us</h3>
+          <p>We are available 24/7, 7 days a week.</p>
+          <p><strong>Phone:</strong> +8801611112222</p>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div style="margin-top: 2rem;">
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <div style="background-color: #5c6bc0; color: white; border-radius: 50%; padding: 0.75rem;">
+          <i class='bx bxs-envelope' style="font-size: 2rem;"></i>
+        </div>
+        <div>
+          <h3 style="margin: 0;">Write To Us</h3>
+          <p>Fill out our form and we will contact you within 24 hours.</p>
+          <p><strong>Emails:</strong><br> customer<span>&#64;</span>shopease.com<br> support<span>&#64;</span>shopease.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Section -->
+  <div style="flex: 2; min-width: 300px; background: #fff; border-radius: 1rem; padding: 2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
+    <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; width: 100%;">
+        <input type="text" name="name" placeholder="Your Name *" [(ngModel)]="formData.name" required
+               style="flex: 1; padding: 0.75rem; background: #f4f4f4; border: none; border-radius: 0.5rem;" />
+        <input type="email" name="email" placeholder="Your Email *" [(ngModel)]="formData.email" required
+               style="flex: 1; padding: 0.75rem; background: #f4f4f4; border: none; border-radius: 0.5rem;" />
+        <input type="tel" name="phone" placeholder="Your Phone *" [(ngModel)]="formData.phone" required
+               style="flex: 1; padding: 0.75rem; background: #f4f4f4; border: none; border-radius: 0.5rem;" />
+      </div>
+      <textarea name="message" placeholder="Your Message" [(ngModel)]="formData.message" required rows="5"
+                style="width: 95%; padding: 1rem; background: #f4f4f4; border: none; border-radius: 0.5rem;"></textarea>
+      <div style="text-align: right; margin-top: 1rem;">
+        <button type="submit"
+                style="background-color: #5c6bc0; color: white; padding: 0.75rem 2rem; border: none; border-radius: 0.5rem; cursor: pointer;">
+          Send message
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div style="margin-top: 2rem; border-radius: 1rem; overflow: hidden; max-width: 1200px; margin: auto; padding: 2rem; color: white; border-radius: 2rem;">
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.450542521473!2d72.5416410750829!3d23.02906747916998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e84f0b3f9f975%3A0xf5d9a4c9a8021e80!2sLD%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1648800000000!5m2!1sen!2sin"
+    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>

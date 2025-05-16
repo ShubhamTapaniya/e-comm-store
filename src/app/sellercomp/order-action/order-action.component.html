@@ -1,0 +1,50 @@
+<div style="display: flex; justify-content: center;">
+    <div class="container">
+        <h1>Update Order Status</h1>
+        <p><b>Order ID:</b> {{ update_status.orderid }}</p>
+        <p><b>Customer:</b> {{ update_status.name }}</p>
+        <p><b>Email:</b> {{ update_status.email }}</p>
+        <p><b>Phone:</b> {{ update_status.phone }}</p>
+        <p><b>Order Date :</b>{{ update_status.orderdate}}</p>
+        @if(update_status.date !== ''){
+          <p><b>Delivery Date :</b>{{ update_status.date}}</p>
+        }
+        <!-- <p><b>Total Price:</b>{{ update_status.final_checkout_price }} $</p> -->
+    
+        <h3>Cart Items:</h3>
+        <div class="cart-table">
+            <div class="cart-row header">
+              <div class="cart-product">Product</div>
+              <div class="cart-quantity">Quantity</div>
+            </div>
+          
+            @for(item of cart_data; track $index) {
+              <div class="cart-row">
+                <div class="cart-product">
+                  <img [src]="item.product_image" width="50" height="50" />
+                  <span>{{ item.product_title }}</span>
+                </div>
+                <div class="cart-quantity">
+                  x{{ item.product_quantity }}
+                </div>
+              </div>
+            }
+          </div>
+          
+    
+        <label for="status">Change Status:</label>
+        <select [(ngModel)]="orderstatus" id="status" required>
+        <!-- <option value="Pending">Pending</option> -->
+        <option value="Packed">Packed</option>
+        <option value="Shipped">Shipped</option>
+        <option value="Delivered">Delivered</option>
+        <option value="Cancelled">Cancelled</option>
+        </select>
+        <label for="date">
+            Set Estimated date: <br>
+            <input type="date" [(ngModel)]="date" id="date" required [min]="today">
+        </label>
+        <button (click)="updateStatus()" [disabled]="((orderstatus==='') || (date===''))">Update Status</button>
+    </div>
+      
+</div>

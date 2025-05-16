@@ -1,0 +1,97 @@
+<app-auto-slider></app-auto-slider>
+
+<div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap;">
+    <div style="height: 250px; width:250px; padding: 1rem; margin: 2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.2); border-radius: 1rem;background-color: #5c6bc0;color: white;">
+        <div style="display: flex;">
+            <div style="display: flex;  flex-direction: column;height: 250px; justify-content: center;">
+                <p>Men</p>
+                <a (click)="search_value('men')" style="text-decoration: none; color: white;opacity: 0.7; cursor: pointer;">View All</a>
+            </div>
+            <img src="assets/man.png" alt="no img" height="250px" width="250px" >
+        </div>
+    </div>
+    <div style="height: 250px; width:250px; padding: 1rem; margin: 2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.2); border-radius: 1rem;background-color: #5c6bc0;color: white;">
+        <div style="display: flex;">
+            <div style="display: flex;  flex-direction: column;height: 250px; width: 2.5rem; justify-content: center;">
+                <p>Women</p>
+                <a (click)="search_value('women')" style="text-decoration: none; color: white;opacity: 0.7; cursor: pointer;">View All</a>
+            </div>
+            <img src="assets/women.png" alt="no img" height="225px" width="auto" style="padding-top: 1.8rem; ">
+        </div>
+    </div>
+    <div style="height: 250px; width:250px; padding: 1rem; margin: 2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.2); border-radius: 1rem;background-color: #5c6bc0;color: white;">
+        <div style="display: flex;">
+            <div style="display: flex;  flex-direction: column;height: 250px; width: 50%; justify-content: center;">
+                <p>Kids</p>
+                <a (click)="search_value('kids')" style="text-decoration: none; color: white;opacity: 0.7; cursor: pointer;">View All</a>
+            </div>
+            <img src="assets/kid.png" alt="no img" height="250px" width="250px">
+        </div>
+    </div>
+</div>
+
+<h1 style="text-align: center; padding: 2rem;">Best Selling Items</h1>
+<div style="display: flex; flex-wrap: wrap;  align-items: center;justify-content: center;">
+    @if(top_products.length === 0){
+        <app-scelly></app-scelly>
+    }@else{
+        
+        @for(product of top_products.slice(0, 4); track product.id){
+            @if(product.stock >= 1 ){
+                <div style="height:23rem; width: 14rem; border-radius: 1rem; padding: 1rem; margin: 2.5rem;box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+                    <div style="display: flex; justify-content: center; text-align: center;">
+                        <img src="{{product.image}}" alt=" no img" height="200px" width="200px">
+                    </div>
+                    <div style="display: flex; flex-direction: column; justify-content: center; text-align: center; position: relative;">
+                        <h3 style="height: 3rem; overflow: hidden;">{{product.title}}</h3>
+                        <h4 style="margin: 0.3rem;">{{product.price}} $</h4>
+                        <p>⭐ {{product.rating.rate}}({{product.rating.count}} review)</p>
+                        <p>Stock : {{product.stock}}</p>
+                        <button style="position: absolute; top: 7.5rem; right: 0.7rem; width: 12rem;" (click)="addtocart(product)">Add to Cart</button>
+                    </div>
+                </div>
+            }@else{
+                <div style="height:23rem; width: 14rem; border-radius: 1rem; padding: 1rem; margin: 2.5rem;box-shadow: 0 4px 16px rgba(0,0,0,0.2);" class="out_of_stock">
+                    <div style="display: flex; justify-content: center; text-align: center;">
+                        <img src="{{product.image}}" alt=" no img" height="200px" width="200px">
+                    </div>
+                    <div style="display: flex; flex-direction: column; justify-content: center; text-align: center; position: relative;">
+                        <h3 style="height: 3rem; overflow: hidden;">{{product.title}}</h3>
+                        <h4 style="margin: 0.3rem;">{{product.price}} $</h4>
+                        <p>⭐ {{product.rating.rate}}({{product.rating.count}} review)</p>
+                        <p>Stock : {{product.stock}}</p>
+                        <button style="position: absolute; top: 7.5rem; right: 0.7rem; width: 12rem;" disabled>Out of stock</button>
+                    </div>
+                </div>
+            }
+        }
+    }
+</div>
+
+<div style="background-image: url('assets/single-campaign.png'); background-attachment: fixed;background-image: no-repeat;">
+    <!-- this line background-attachment: fixed; is making paralex effect -->
+    <div style="padding: 15.6rem 2rem 15.6rem 2rem;color: white; text-align: center;">
+        <h1 style="font-size: 2rem;">Welcome Summer 2025 with exiting offeres</h1>
+        <h1 style="font-size: 4rem;">upto 40% off</h1>
+        <button id="shop_now" routerLink="/shop">Shop now</button>
+    </div>        
+</div>
+
+
+<div style="display: flex; text-align: center; justify-content: center; padding: 2rem; flex-wrap: wrap;">
+    @for(card of cards;track card){
+        <div style="height: 150px; width:150px; padding: 1rem; margin: 1rem; box-shadow: 0 4px 16px rgba(0,0,0,0.2); border-radius: 1rem;">
+            <div style="padding: 0.5rem;">
+                <i class="{{card.icon}}" style="color: #5c6bc0;font-size: 2rem;"></i>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+                <b>{{card.boldtext}}</b>
+                <br>
+                <p style="color: rgba(0,0,0,0.5);">{{card.lighttext}}</p>
+            </div>
+        </div>
+    }
+</div>
+<app-toaster></app-toaster>
+
+

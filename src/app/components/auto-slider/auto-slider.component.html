@@ -1,0 +1,22 @@
+<div class="slider-container">
+    <div style="position: absolute; align-self: center; margin: 0 10rem 0 10rem;line-height: 4rem;">
+        <p style="font-size: 2rem; font-weight: 600;">SUMMER SALE</p>
+        <h1 style="font-size: 2.5rem;">Flat 33% off on All roducts</h1>
+        <button style="padding: 2rem;" routerLink="/shop">Explore Now</button>
+      </div>
+    <img [src]="images[currentIndex]" alt="Slide Image" class="slide-image" height="100%" width="100%"/>
+  
+    <!-- Previous and Next buttons -->
+    <button class="nav-button prev" (click)="prevImage()">&#10094;</button>
+    <button class="nav-button next" (click)="nextImage()">&#10095;</button>
+  
+    <!-- Dot navigation -->
+    <div class="dots-container">
+      <span 
+        *ngFor="let img of images; let i = index" 
+        [class.active]="i === currentIndex"
+        (click)="goToImage(i)">
+      </span>
+    </div>
+</div>
+  

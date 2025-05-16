@@ -1,0 +1,7 @@
+button:disabled{
+    /* opacity: 0.3; */
+    cursor: not-allowed;
+}
+.out_of_stock{
+    opacity: 0.5;
+}

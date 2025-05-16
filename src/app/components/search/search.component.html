@@ -1,0 +1,48 @@
+<br>
+<div>
+    @if(result_products().length !== 0){
+        <h2  style="text-align: center;">here are search results for {{current_search}}</h2>
+    }
+</div>
+<div  style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    @if(result_products().length === 0){
+        <img src="assets/nodatafound.jpg" 
+           alt="No Results Found" 
+           style="max-width: 400px; width: 100%; margin: 2rem;" />
+        <h1 style="color: #5c6bc0;">Oops! No matching products found.</h1>
+    }
+</div>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+    @for(product of result_products(); track product.id){
+        @if(product.stock >= 1 ){
+            <div style="height:23rem; width: 14rem; border-radius: 1rem; padding: 1rem; margin: 2.5rem;box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+                <div style="display: flex; justify-content: center; text-align: center;">
+                    <img src="{{product.image}}" alt=" no img" height="200px" width="200px">
+                </div>
+                <div style="display: flex; flex-direction: column; justify-content: center; text-align: center; position: relative;">
+                    <h3 style="height: 3rem; overflow: hidden;">{{product.title}}</h3>
+                    <h4 style="margin: 0.3rem;">{{product.price}} $</h4>
+                    <p>⭐ {{product.rating.rate}}({{product.rating.count}} review)</p>
+                    <p>Stock : {{product.stock}}</p>
+                    <button style="position: absolute; top: 7.5rem; right: 0.7rem; width: 12rem;" (click)="addtocart(product)">Add to Cart</button>
+                </div>
+            </div>
+        }@else{
+            <div style="height:23rem; width: 14rem; border-radius: 1rem; padding: 1rem; margin: 2.5rem;box-shadow: 0 4px 16px rgba(0,0,0,0.2);" class="out_of_stock">
+                <div style="display: flex; justify-content: center; text-align: center;">
+                    <img src="{{product.image}}" alt=" no img" height="200px" width="200px">
+                </div>
+                <div style="display: flex; flex-direction: column; justify-content: center; text-align: center; position: relative;">
+                    <h3 style="height: 3rem; overflow: hidden;">{{product.title}}</h3>
+                    <h4 style="margin: 0.3rem;">{{product.price}} $</h4>
+                    <p>⭐ {{product.rating.rate}}({{product.rating.count}} review)</p>
+                    <p>Stock : {{product.stock}}</p>
+                    <button style="position: absolute; top: 7.5rem; right: 0.7rem; width: 12rem;" disabled>Out of stock</button>
+                </div>
+            </div>
+        }
+    }
+</div>
+<app-toaster></app-toaster>
+

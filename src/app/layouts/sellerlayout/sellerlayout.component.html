@@ -1,0 +1,60 @@
+<div style="display: flex;flex-direction: column;height: 100vh;justify-content: space-between;">
+    <header>
+        <div class="container" style="padding: 1.5rem; display: flex; justify-content: space-between; align-items: center;"> 
+            <div>
+                <h2>E-comm</h2>
+            </div>
+            <div style="display: flex; gap: 1.5rem; font-weight: bold; align-items: center;">
+                <a routerLink="dashbord" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" style="text-decoration: none;">Dashboard</a>
+                <a routerLink="products" routerLinkActive="active" style="text-decoration: none;">Products</a>         
+                <div style="margin: 1rem; cursor: pointer; position: relative;" routerLink="orders">
+                    <a routerLinkActive="active" style="text-decoration: none;">Orders</a>
+                    <span *ngIf="total_orders() > 0" style="position: absolute; top: -5px; right: -5px; background-color: red; color: white; border-radius: 50%; padding: 5px 10px; font-size: 0.75rem;">
+                        {{ total_orders() }}
+                    </span>                  
+                </div> 
+                <a routerLink="add-product" routerLinkActive="active" style="text-decoration: none;">Add Product</a>
+            </div>
+            <div style="display: flex; gap: 1.5rem; font-weight: bold; align-items: center;">
+                <a>Welcome, {{userservice.sellername}}</a>
+                <a (click)="logout()" style=" border: none; cursor: pointer;">Logout</a>
+            </div>
+        </div>
+        <hr class="shadow-line">
+    </header>
+    <main>
+        <router-outlet></router-outlet>
+    </main>
+    <footer>
+        <div style="display: flex; flex-direction: column;flex-wrap: wrap;width: 100%;">
+            <div class="black">
+                <div>
+                    <h2>E-comm</h2>
+                    <p>Thank you for shopping with us!</p>
+                    <p>We are committed to bringing you the best deals and fastest delivery.</p>
+                </div>
+                <div class="quicklinks">
+                    <h2>Quick links</h2>
+                    <a routerLink="dashbord">Dashboard</a>
+                    <br>
+                    <a routerLink="products">Products</a>
+                    <br>
+                    <a routerLink="orders">Orders</a>
+                    <br>
+                    <a routerLink="add-product">Add Product</a>
+                </div>
+                <div>
+                    <h2>Follow us</h2>
+                    <i class='bx bxl-facebook-square' ></i>
+                    <i class='bx bxl-instagram-alt' ></i>
+                    <i class='bx bxl-twitter' ></i>
+                    <i class='bx bxl-linkedin-square' ></i>
+                </div>
+            </div>
+            <div style="background-color: #fee46f; display: flex; justify-content: space-between; padding: 0.5rem;flex-wrap: wrap;">
+                <p>© 2025 E-comm. All rights reserved.</p>
+                <p>Secure payments | Fast delivery | Easy returns</p>
+            </div>
+        </div>
+    </footer>
+</div>
