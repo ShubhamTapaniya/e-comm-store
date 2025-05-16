@@ -59,9 +59,8 @@ export class OrderActionComponent {
     })
   }
   updateStatus(){
-    
     if(confirm(`set order status to ${this.orderstatus} & delivery date to ${this.date} ?`)){
-      this.sellerservice.update_status(this.id,{...this.update_status,cart: this.cart_data,order_status : this.orderstatus,delivery_date:this.date,userid : this.userid}).subscribe(()=>{
+      this.sellerservice.update_status(this.id,{order_status : this.orderstatus,delivery_date:this.date}).subscribe(()=>{
         this.show_order();
       });
       this.router.navigate(['seller/orders']);

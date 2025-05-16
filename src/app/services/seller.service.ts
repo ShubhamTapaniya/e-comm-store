@@ -33,7 +33,7 @@ export class SellerService {
     return this.http.get(`https://ecomm-json-server.onrender.com/orders/${id}`);
   }
   update_status(id:number,order:any){//update order status date and replace with old order obj
-    return this.http.put(`https://ecomm-json-server.onrender.com/orders/${id}`,order);
+    return this.http.patch(`https://ecomm-json-server.onrender.com/orders/${id}`,order);
   }
   data_to_seller = {};
   final_cart = {};
