@@ -26,16 +26,16 @@ export class AddtocartService {
     return this.orderid;
   }
   post_cart(product:any){
-    return this.http.post('http://localhost:3000/cart',{...product,quantity : 1,subtotal: product.price,total_amount:0});
+    return this.http.post('https://ecomm-json-server.onrender.com/cart',{...product,quantity : 1,subtotal: product.price,total_amount:0});
   }
   get_cart(){
-    return this.http.get<any[]>('http://localhost:3000/cart');
+    return this.http.get<any[]>('https://ecomm-json-server.onrender.com/cart');
   }
   remove_cart(id:number){
-    return this.http.delete(`http://localhost:3000/cart/${id}`);
+    return this.http.delete(`https://ecomm-json-server.onrender.com/cart/${id}`);
   }
   change_quantity_subtotal(product: any){
-    return this.http.put(`http://localhost:3000/cart/${product.id}`, product);
+    return this.http.put(`https://ecomm-json-server.onrender.com/cart/${product.id}`, product);
   } 
   product_cart:any = []; 
   total_products = signal(0);
@@ -58,9 +58,9 @@ export class AddtocartService {
   the_final_price = 0;
 
   reduce_quantity(product :any){
-    return this.http.patch(`http://localhost:3000/products/${product.id}`, { 'stock': product.stock });
+    return this.http.patch(`https://ecomm-json-server.onrender.com/products/${product.id}`, { 'stock': product.stock });
   }
-  post_payment_data(paymentData:any){
-    return this.http.post('http://localhost:3000/payments', paymentData);
-  }
+  // post_payment_data(paymentData:any){
+  //   return this.http.post('http://localhost:3000/payments', paymentData);
+  // }
 }

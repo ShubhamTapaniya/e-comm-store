@@ -9,31 +9,31 @@ import { Observable } from 'rxjs';
 export class SellerService {
   constructor(private http:HttpClient) { }
   addproduct(product:any):Observable<object>{
-    return this.http.post('http://localhost:3000/products',product);
+    return this.http.post('https://ecomm-json-server.onrender.com/products',product);
   }
   removeproduct(id:number){
-    return this.http.delete(`http://localhost:3000/products/${id}`);
+    return this.http.delete(`https://ecomm-json-server.onrender.com/products/${id}`);
   }
   updateproduct(id:number,product:any){
-    return this.http.put(`http://localhost:3000/products/${id}`,product);
+    return this.http.put(`https://ecomm-json-server.onrender.com/products/${id}`,product);
   }
   getproduct(id:number){
-    return this.http.get(`http://localhost:3000/products/${id}`);
+    return this.http.get(`https://ecomm-json-server.onrender.com/products/${id}`);
   }
   create_orders(cart:any):Observable<object>{
-    return this.http.post('http://localhost:3000/orders',cart);
+    return this.http.post('https://ecomm-json-server.onrender.com/orders',cart);
   }
   get_orders():Observable<object>{
-    return this.http.get('http://localhost:3000/orders');
+    return this.http.get('https://ecomm-json-server.onrender.com/orders');
   }
   put_order(order:any){
-    return this.http.put('http://localhost:3000/orders',order);
+    return this.http.put('https://ecomm-json-server.onrender.com/orders',order);
   }
   find_order(id:number){
-    return this.http.get(`http://localhost:3000/orders/${id}`);
+    return this.http.get(`https://ecomm-json-server.onrender.com/orders/${id}`);
   }
   update_status(id:number,order:any){//update order status date and replace with old order obj
-    return this.http.put(`http://localhost:3000/orders/${id}`,order);
+    return this.http.put(`https://ecomm-json-server.onrender.com/orders/${id}`,order);
   }
   data_to_seller = {};
   final_cart = {};

@@ -13,17 +13,26 @@
               <a class="icon"><i class='bx bxl-linkedin-square' ></i></a>
             </div>
             <span>or use your email password</span>
-            <input type="email" placeholder="Email" name="username" [(ngModel)]="adminobj.email" />
+            <input type="email" placeholder="Email" name="username" [(ngModel)]="adminobj.email" #email="ngModel" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required/>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" style="color: red; font-size: 0.9rem;">
+              <div *ngIf="email.errors?.['required']">Email is required.</div>
+              <div *ngIf="email.errors?.['pattern']">Email must contain &#64; and a valid domain.</div>
+              <div *ngIf="email.errors?.['email']">Email is not in valid format.</div>
+            </div>
             <div style="display: flex; width: 100%; position: relative;">
-              <input [type]=" pass_show ? 'text' : 'password'" [(ngModel)]="adminobj.password" placeholder="Password" name="password"/>
+              <input [type]=" pass_show ? 'text' : 'password'" [(ngModel)]="adminobj.password" placeholder="Password" name="password" #password="ngModel" required minlength="8"/>
               <button (click)="password_hide_show_toggle()" style="padding: 0; background-color: transparent; color: black; font-size: 1.5rem; position: absolute; margin: 0; top: 0.7rem; left: 17rem;"><i [class]= "pass_show ? 'bx bxs-show' : 'bx bxs-hide'"></i></button>
             </div>
-            <a href="#">Forget Password?</a>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" style="color: red; font-size: 0.9rem;">
+              <div *ngIf="password.errors?.['required']">password is required</div>
+              <div *ngIf="password.errors?.['minlength']">password should be minimum of 8</div>
+            </div>
+            <a >Forget Password?</a>
             <button (click)="signin(adminobj.email,adminobj.password)">Sign In</button>
           </form>
         </div>
         <div class="form-container sign-up">
-          <form>
+          <form #adminForm="ngForm">
             <h1>Create Admin Account</h1>
             <div class="social-icons">
               <a class="icon"><i class='bx bxl-google' ></i></a>
@@ -32,13 +41,22 @@
               <a class="icon"><i class='bx bxl-linkedin-square' ></i></a>
             </div>
             <span>or use your email for registeration</span>
-            <input type="text" [(ngModel)]="adminobj.name" placeholder="Name" name="name" />
-            <input type="email" [(ngModel)]="adminobj.email" placeholder="Email" name="email" />
-            <div style="display: flex; width: 100%; position: relative;">
-              <input [type]=" pass_show ? 'text' : 'password'" [(ngModel)]="adminobj.password" placeholder="Password" name="password"/>
-              <button (click)="password_hide_show_toggle()" style="padding: 0; background-color: transparent; color: black; font-size: 1.5rem; position: absolute; margin: 0; top: 0.7rem; left: 17rem;"><i [class]= "pass_show ? 'bx bxs-show' : 'bx bxs-hide'"></i></button>
+            <input type="text" [(ngModel)]="adminobj.name" placeholder="Name" name="name" required />
+            <input type="email" [(ngModel)]="adminobj.email" #emailRef="ngModel" placeholder="Email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required />
+            <div *ngIf="emailRef.invalid && (emailRef.dirty || emailRef.touched)" style="color: red; font-size: 0.9rem;">
+              <div *ngIf="emailRef.errors?.['required']">Email is required.</div>
+              <div *ngIf="emailRef.errors?.['pattern']">Email must contain &#64; and a valid domain.</div>
+              <div *ngIf="emailRef.errors?.['email']">Email is not in valid format.</div>
             </div>
-            <button (click)="signup(adminobj)" >Sign Up</button>
+            <div style="display: flex; width: 100%; position: relative;">
+              <input [type]=" pass_show ? 'text' : 'password'" #passRef="ngModel" [(ngModel)]="adminobj.password" placeholder="Password" name="password" minlength="8" required />
+              <button type="button" (click)="password_hide_show_toggle()" style="padding: 0; background-color: transparent; color: black; font-size: 1.5rem; position: absolute; margin: 0; top: 0.7rem; left: 17rem;"><i [class]= "pass_show ? 'bx bxs-show' : 'bx bxs-hide'"></i></button>
+            </div>
+            <div *ngIf="passRef.invalid && (passRef.dirty || passRef.touched)" style="color: red; font-size: 0.9rem;">
+              <div *ngIf="passRef.errors?.['required']">password is required</div>
+              <div *ngIf="passRef.errors?.['minlength']">password should be minimum of 8</div>
+            </div>
+            <button (click)="signup(adminobj)" type="button" class="disabledbtn" [disabled]="!adminForm.valid">Sign Up</button>
           </form>
         </div>
         <div class="toggle-container">

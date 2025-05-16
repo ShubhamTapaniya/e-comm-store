@@ -6,26 +6,25 @@ import { Injectable, Signal, signal } from '@angular/core';
 })
 export class UserAuthService {
   constructor(private http:HttpClient){}
-
   
   userpostapi(data:any){
-    return this.http.post('http://localhost:3000/userdata',data);
+    return this.http.post('https://ecomm-json-server.onrender.com/userdata',data);
   }
   
   usergetapi(){
-    return this.http.get('http://localhost:3000/userdata');
+    return this.http.get('https://ecomm-json-server.onrender.com/userdata');
   }
 
   adminpostapi(data:any){
-    return this.http.post('http://localhost:3000/admindata',data);
+    return this.http.post('https://ecomm-json-server.onrender.com/admindata',data);
   }
   
   admingetapi(){
-    return this.http.get('http://localhost:3000/admindata');
+    return this.http.get('https://ecomm-json-server.onrender.com/admindata');
   }
 
   getcategoryapi(){
-    return this.http.get('http://localhost:3000/categories');
+    return this.http.get('https://ecomm-json-server.onrender.com/categories');
   }
   isLoggedin = signal<boolean>(false);
   username = '';
@@ -40,32 +39,32 @@ export class UserAuthService {
   usershowdivservice = signal(false);
   adminshowdivservice = signal(false);
   productsgetapi(){
-    return this.http.get('http://localhost:3000/products');
+    return this.http.get('https://ecomm-json-server.onrender.com/products');
   }
   search_products_service(search:string){
-    return this.http.get(`http://localhost:3000/products?title_like=${search}`);
+    return this.http.get(`https://ecomm-json-server.onrender.com/products?title_like=${search}`);
     //only match in 'title'...if find in description write 'descreption_like'
   }
   delete_product(id:number){
-    this.http.delete(`http://localhost:3000/products?id=${id}`);
+    this.http.delete(`https://ecomm-json-server.onrender.com/products?id=${id}`);
   }
   get_product(id:number){
-    return this.http.get(`http://localhost:3000/products/${id}`);
+    return this.http.get(`https://ecomm-json-server.onrender.com/products/${id}`);
   }
   get_product_title(title:string){
-    return this.http.get(`http://localhost:3000/products?title=${title}`);
+    return this.http.get(`https://ecomm-json-server.onrender.com/products?title=${title}`);
   }
   search_products_data = signal<any>([]);
   current_path = signal('');
   filter_products(val:string){
     if(val === 'men'){
-      return this.http.get(`http://localhost:3000/products?category=${val}`);
+      return this.http.get(`https://ecomm-json-server.onrender.com/products?category=${val}`);
     }else{
-      return this.http.get(`http://localhost:3000/products?category_like=${val}`);
+      return this.http.get(`https://ecomm-json-server.onrender.com/products?category_like=${val}`);
     }
   }
   filterbyprice(min:number,max:number){
-    return this.http.get(`http://localhost:3000/products?price_gte=${min}&price_lte=${max}`);
+    return this.http.get(`https://ecomm-json-server.onrender.com/products?price_gte=${min}&price_lte=${max}`);
   }
   apply_fiters(min:number,max:number,category:string,checkbox_val:number){
     let var1;
@@ -75,6 +74,6 @@ export class UserAuthService {
     }else{
       var1 = '';
     }
-    return this.http.get(`http://localhost:3000/products?price_gte=${min}&price_lte=${max}${var1}${var2}`);
+    return this.http.get(`https://ecomm-json-server.onrender.com/products?price_gte=${min}&price_lte=${max}${var1}${var2}`);
   }
 }

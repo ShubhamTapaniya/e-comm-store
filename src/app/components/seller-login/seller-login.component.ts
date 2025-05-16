@@ -38,12 +38,19 @@ export class SellerComponent {
     this.adminshowdiv.set(true);
   }
 
-  signup(data:object){
-    return this.userservice.adminpostapi(data).subscribe(()=>{
-      this.container.nativeElement.classList.remove('active');//if user actually creted then only it should toggle
-      const inputs = this.container.nativeElement.querySelectorAll('input');
-      inputs.forEach((input: HTMLInputElement) => input.value = '');
-    });//send data to DB
+  signup(data:any){
+    this.userservice.admingetapi().subscribe((res:any)=>{
+      const matchobj = res.find((user:any)=>user.email.toLowerCase() === data.email.trim().toLowerCase());
+      if(!matchobj){
+        this.userservice.adminpostapi(this.adminobj).subscribe(()=>{
+          this.container.nativeElement.classList.remove('active');//if user actually creted then only it should toggle
+          const inputs = this.container.nativeElement.querySelectorAll('input');
+          inputs.forEach((input: HTMLInputElement) => input.value = '');
+        });//send data to DB
+      }else{
+        alert('Email already exists');
+      }
+    });
   }
   signin(email:string,password:string){
     this.userservice.admingetapi().subscribe((data:any)=>{
