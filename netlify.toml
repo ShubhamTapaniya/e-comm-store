@@ -1,0 +1,7 @@
+[build] 
+    publish "dist/ecommerce/browser" 
+    command "npm run build" 
+[[redirects]] 
+    from = "/*" 
+    to = "/index.html" 
+    status 200 
